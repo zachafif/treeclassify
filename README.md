@@ -13,9 +13,11 @@ Related works related to this project serve as benchmark for the developed model
 
 ## Dataset and Features
 
-The dataset, provided by Dubrovin et al. (2024), comprises of point cloud data acquired from a LiDAR sensor mounted on an Unmanned Aerial Vehicle (UAV), complemented by field inventory data that serves as the ground truth reference for the LiDAR measurements. The study area is situated in Perm Krai, Russia, approximately 90 km east of the regional administrative center, Perm. This region features a dense mixed forest characterized by a complex and irregular canopy structure.
+### Dataset
 
-LiDAR point cloud already undergo noise cleaning to filter points with extreme values above canopy. After that, ground classification was done to identify points that represent the ground. Finally, the data was normalized by transforming points elevation as height above ground. Finally, the LiDAR features/metrics were extracted by applying various formula (descriptive statistics, etc.) in a circular plot with field inventory’s tree location data as it center. The list of features will be provided in a separate excel file.
+The dataset, provided by Dubrovin et al. (2024), comprises of point cloud data acquired from a LiDAR sensor mounted on an Unmanned Aerial Vehicle (UAV), complemented by field inventory data that serves as the ground truth reference for the LiDAR measurements. The study area is situated in Perm Krai, Russia, approximately 90 km east of the regional administrative center, Perm. This region features a dense mixed forest characterized by a complex and irregular canopy structure. LiDAR point cloud already undergo noise cleaning to filter points with extreme values above canopy. After that, ground classification was done to identify points that represent the ground. Finally, the data was normalized by transforming points elevation as height above ground. 
+
+![image](https://github.com/user-attachments/assets/ba04aaff-979a-499c-bfd0-3ea35b6b6bf9)
 
 The dataset includes species labels for each of the 3,600 trees surveyed which covers seven species of trees, approximately equally split among coniferous and deciduous: spruce, birch, fir, aspen, tilia, alder, and willow. For this project the main goal is to classify into coniferous and deciduous, therefore each tree species will be assigned to a new column of binary class (coniferous or deciduous).
 
@@ -28,6 +30,17 @@ Next, the data also has been checked for Null or NaN values, however turns out t
 Then, we visualize each feature by class using a boxplot to see the difference of distribution in between classes. From this plot we can see that there are features that has significant difference in between classes and there are some that has little to no difference.
 
 ![image](https://github.com/user-attachments/assets/f63383c1-7ec7-48bf-a0a4-34d3c8e65472)
+
+
+### Feature
+
+LiDAR features/metrics were extracted by applying various formula (descriptive statistics, etc.) in a circular plot with field inventory’s tree location data as it center. The list of features will be provided in a separate excel file with the total of 120 features extracted from the data. To reduce the data dimensionality and to make the model more interpretable, we conduct a variable selection process. We use forward selection approach for our data due to it simplicity and computationally feasible to do with author’s machine. The approach begin with fitting the model using M0 with no input variable,  followed by recursively add all input variable one by one with the CV score calculated for each. Next,  the variable with the best score added by one predictor with the same step as before. For this project we chose the best ten predictor, this process will yield the top ten predictors with the smallest CV error.
+
+![image](https://github.com/user-attachments/assets/0a3b41ff-8080-46b4-b5b6-47937f01c363)
+
+From the process, we select ten features as follows,
+
+_'pzabove2', 'CRR', 'zpcum8', 'L1', 'pz_5.10', 'n_first', 'Oligophotic', 'kde_peak1_value', 'imax', 'ipcumzq30'_
 
 ## Method
 
@@ -49,13 +62,17 @@ Our choice on using random forest is that the algorithm often used to classify L
 2. Random Forest is capable of modeling non-linear relationships as LiDAR data contains complex relationships between features
 3. The algorithm is quite simple and not require extensive preprocessing and hyperparameter tweaking.
 
-## Experiment
+## Experiment, Result, and Discussion
 
-## Result
+### Variable Selection Result 
+The variable selection resulted in the top ten best features to be used for modelling. This feature are 
 
-## Discussion
+### Hypermarameters
+Hyperparameters experimented for this project 
 
-## Conclusion
+### Model Performance
+
+### Conclusion and Future Works
 
 
 
