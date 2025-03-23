@@ -7,11 +7,15 @@ Forest are a crucial renewable natural resource and an important dynamic part of
 
 Recent development in the field of forest inventory moved toward the application of remote sensing method such as Light Detection and Ranging (LiDAR) for conducting forest inventory. As LiDAR method works by using pulsed lasers to detect and measure terrain and object surfaces, it provide range data in the form of three-dimensional point clouds that can penetrate canopy. Thus, it can capture the structure of the forest down to each tree.
 
+![image](https://github.com/user-attachments/assets/94a1fbdf-b211-4e7b-9874-b9c8935ab5fd)
+
+
 While the acquisition technology can capture detailed data, it need a statistical model in order to generate automatic tree species information. Such modelling can be done using machine learning approaches to correlate tree species with LiDAR data. In this project, we will use random forest algorithm to classify tree species from LiDAR data.
 
 ## Related Works
 Related works related to this project serve as benchmark for the developed model,
-![image](https://github.com/user-attachments/assets/e00f445a-e673-4060-a0d0-e6e4995f80d9)
+
+![image](https://github.com/user-attachments/assets/1db01852-bdd4-4024-ac2e-dc2a38a19450)
 
 ## Dataset and Features
 
@@ -41,11 +45,11 @@ Columns with at least one NaN value: []
 
 Then, we try to visualize the each features (columns)  with a kernel density estimate plot to see the distribution. From the plot we can see that the features has varying skewness either negative or positive with several features has near normal bell-shaped appearance.
 
-![image](https://github.com/user-attachments/assets/3adc01c5-330e-4ad6-a385-92c2abb09848)
+![image](https://github.com/user-attachments/assets/5a93c53d-4f69-4e6f-89e0-5f3d7b1136fd)
 
 Then, we visualize each feature by class using a boxplot to see the difference of distribution in between classes. From this plot we can see that there are features that has significant difference in between classes and there are some that has little to no difference.
 
-![image](https://github.com/user-attachments/assets/f63383c1-7ec7-48bf-a0a4-34d3c8e65472)
+![image](https://github.com/user-attachments/assets/73841153-f87b-4d21-81fa-8885f7cb0088)
 
 
 ### Feature
@@ -139,22 +143,26 @@ Accuracy is the most fundamental metrics for classification model evaluation. It
 4.	Confusion matrix, graphical representation of all positive and negative instance
 5.	Receiver Operating Characteristic (ROC) Curve, graphical representation of a classification model's ability to distinguish between positive and negative classes at various classification thresholds. The curve is plotted from True Positive Rate (recall) as y-axis and False Positive Rate (1-recall) as x-axis. Additionally it also compute Area under Curve (AUC) which is basically evaluate the model’s performance to distinguish positives and negatives.
 
-Furthermore, we test the model using default parameter and best parameter on the test dataset, the results are as following,
+Furthermore, we divided the data into training set and test set with a ration of 80:20. Then, the training set was used for model fitting, and the training accuracy was evaluated using k-cross validation with k=5. Last, the fitted model were tested against test set to get the final evaluation metrics. For this experiment, we build three scenario model as follows,
+1. Scenario #1: Fitted model with all metrics and default hyperparameters
+2. Scenario #2:Fitted model with selected metrics and default hyperparameters
+3. Scenario #3:Fitted model with selected metrics and selected hyperparameters
 
-![image](https://github.com/user-attachments/assets/dfbe1ffd-ae78-4eb6-9d5e-4b8e1a18caf6)
+The results for these three scenarios shown in below table,
 
-From the comparison table, we can conclude that the best parameter has improved all performance metric by 0.027. 
+![image](https://github.com/user-attachments/assets/9045e4dd-48b1-40d4-b94d-303f806b1521)
+From the comparison table, we can conclude that the selected features with the best parameter has improved overall performance metrics.
 
 Next, the best parameter model yield the following confusion matrix,
 
-![image](https://github.com/user-attachments/assets/1a155fdc-5a3b-4c69-a9ad-3edeb5c721c0)
+![image](https://github.com/user-attachments/assets/f187925b-2cf9-4d5a-9353-a504cb199a09)
 
 The yellow box represent true instances whereas the purple represent false instances. It was shown that the model has true instances twice the false instances, a TPR > TFR which shows a good sign for our model. 
 Lastly, we perform ROC curve analysis and yield the following result,
 
-![image](https://github.com/user-attachments/assets/989f6a63-10b8-4ac7-918c-e64dc4ddbd59)
+![image](https://github.com/user-attachments/assets/b7997836-f873-4375-b52c-ac54b537686a)
 
-The curve has a AUC of 0.7 which was higher than random guess (0.5). This indicate that the model has better prediction than random guess but it still more improvement as it has a relatively small predictive power.
+The curve has a AUC of 0.71 which was higher than random guess (0.5). This indicate that the model has better prediction than random guess but it still more improvement as it has a relatively small predictive power.
 
 ### Conclusion and Future Works
 
