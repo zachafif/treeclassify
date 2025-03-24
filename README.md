@@ -78,7 +78,7 @@ Then after all trees are done, the final outcome will combine all the trees resu
 
 ![image](https://github.com/user-attachments/assets/e1a2e79a-5aad-4e20-a898-65095d60cce9)
 
-When performing Random Forests based on classification data, we often use the Gini index to decide how nodes on a decision tree branch [8] :
+When performing Random Forests based on classification data, we often use the Gini index to decide how nodes on a decision tree branch :
 
 ![image](https://github.com/user-attachments/assets/a7814b3e-a921-4c47-b979-10b0d4a0c1c3)
 
@@ -93,7 +93,7 @@ Our choice on using random forest is that the algorithm often used to classify L
 ## Experiment, Result, and Discussion
 
 ### Variable Selection Result 
-To reduce the data dimensionality and to make the model more interpretable, we conduct a variable selection process. We use forward selection approach for our data due to it simplicity and computationally feasible to do with author’s machine. The approach begin with fitting the model using M0 with no input variable,  followed by recursively add all input variable one by one with the cross validation score calculated for each. Next,  the variable with the best score added by one predictor with the same step as before. For this project we chose the best ten predictor, this process will yield the top ten predictors with the smallest CV error.
+To reduce the data dimensionality and to make the model more interpretable, we conduct a variable selection process. We use forward selection approach for our data due to it simplicity and computationally feasible to do with author’s machine. The approach begin with fitting the model using M0 with no input variable,  followed by recursively add all input variable one by one with the cross validation score calculated for each. Next,  the variable with the best score added by one predictor with the same step as before. For this project we chose the best **ten (10)** predictor, this process will yield the top ten predictors with the smallest CV error.
 
 ![image](https://github.com/user-attachments/assets/0a3b41ff-8080-46b4-b5b6-47937f01c363)
 
@@ -102,6 +102,12 @@ From the process, we select ten features as follows,
 ```
 'pzabove2', 'CRR', 'zpcum8', 'L1', 'pz_5.10', 'n_first', 'Oligophotic', 'kde_peak1_value', 'imax', 'ipcumzq30'
 ```
+
+The performance of forward selection features in this project can be shown in the following figure,
+
+![image](https://github.com/user-attachments/assets/5a7c2a22-f659-4a2f-95b3-6126457ce9e1)
+
+The performance shows an improvement as the features being added and become stagnant halfway.
 
 ### Hypermarameters
 Hyperparameters experimented for this project are,
@@ -116,6 +122,11 @@ We test a few different models using GridSearchCV with params_grid set as
 ```
 {'n_estimators': [100,250,500], 'max_depth': [None, 10, 20], 'min_samples_split': [2, 5, 10], 'min_samples_leaf': [1, 2, 4]}
 ```
+
+The result can be seen in below figure,
+
+![image](https://github.com/user-attachments/assets/39665dd6-5a3e-443c-829d-0ff48381a8d0)
+
 and get the best parameter as: 
 ```
 {'max_depth': None, 'min_samples_leaf': 4, 'min_samples_split': 5, 'n_estimators': 100}
@@ -165,8 +176,10 @@ Lastly, we perform ROC curve analysis and yield the following result,
 The curve has a AUC of 0.71 which was higher than random guess (0.5). This indicate that the model has better prediction than random guess but it still more improvement as it has a relatively small predictive power.
 
 ### Conclusion and Future Works
-In this project, we aimed to classify tree species from LiDAR point cloud data using machine learning model. The point cloud data used by dataset provided by …  was acquired using LiDAR sensor mounted in a UAV and accompanied with a field inventory data as label reference. The study area was located in Perm, Russia.The output of the project was a binary classification prediction of the tree species, whether it was deciduous or coniferous.  The selected model algorithm for this project was random forest model. Furthermore, we had  experimented on the model feature selection and hyperparametes.
-The experiment resulted in only slight differences between various features and hyperparameters with the accuracy of 0.70-0.72 in the test dataset and F1 score of 0.70-0.71. 
+In this project, we aimed to classify tree species from LiDAR point cloud data using machine learning model. The point cloud data used by dataset provided by …  was acquired using LiDAR sensor mounted in a UAV and accompanied with a field inventory data as label reference. The study area was located in Perm, Russia.The output of the project was a binary classification prediction of the tree species, whether it was deciduous or coniferous.  The selected model algorithm for this project was random forest model. Furthermore, we had  experimented on the model feature selection and hyperparameter by using three different scenarios as following, default parameter-all features, default parameter-selected features, best parameters-selected features.
+
+The experiment resulted in only slight differences between scenarios with the accuracy of 0.70-0.72 in the test dataset and F1 score of 0.70-0.71. These results shows that the model still need improvement as it has a relatively small predictive power. Moreover, future research can focus more on improving LiDAR feature extraction technique, better feature selection method, and exploring other model algorithms.
+
 
 
 
