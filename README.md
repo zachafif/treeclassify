@@ -21,7 +21,7 @@ Related works related to this project serve as benchmark for the developed model
 
 ### Dataset
 
-The dataset, provided by Dubrovin et al. (2024), comprises of point cloud data acquired from a LiDAR sensor mounted on an Unmanned Aerial Vehicle (UAV), complemented by field inventory data that serves as the ground truth reference for the LiDAR measurements. Point cloud data is a set of points in a 3D coordinate system with each point contain the following information,
+The dataset, provided by Dubrovin et al. (2024), comprises of point cloud data acquired from a LiDAR sensor mounted on an Unmanned Aerial Vehicle (UAV), complemented by field inventory data that serves as the ground truth reference (label) for the LiDAR measurements. Point cloud data is a set of points in a 3D coordinate system with each point contain the following information,
 
 ![image](https://github.com/user-attachments/assets/6d7a4397-0814-43d7-b360-3d88827cbb29)
 
@@ -165,7 +165,8 @@ Lastly, we perform ROC curve analysis and yield the following result,
 The curve has a AUC of 0.71 which was higher than random guess (0.5). This indicate that the model has better prediction than random guess but it still more improvement as it has a relatively small predictive power.
 
 ### Conclusion and Future Works
-
+In this project, we aimed to classify tree species from LiDAR point cloud data using machine learning model. The point cloud data used by dataset provided by …  was acquired using LiDAR sensor mounted in a UAV and accompanied with a field inventory data as label reference. The study area was located in Perm, Russia.The output of the project was a binary classification prediction of the tree species, whether it was deciduous or coniferous.  The selected model algorithm for this project was random forest model. Furthermore, we had  experimented on the model feature selection and hyperparametes.
+The experiment resulted in only slight differences between various features and hyperparameters with the accuracy of 0.70-0.72 in the test dataset and F1 score of 0.70-0.71. 
 
 
 
