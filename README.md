@@ -109,7 +109,7 @@ The performance of forward selection features in this project can be shown in th
 
 The performance shows an improvement as the features being added and become stagnant halfway.
 
-### Hypermarameters
+### Hyperparameters
 Hyperparameters experimented for this project are,
 ```
 n_estimators=The number of trees in the forest
