@@ -1,8 +1,7 @@
 # treeclassify
 Portfolio project on tree species classification using LiDAR and machine learning
 
-![image](https://github.com/user-attachments/assets/1383d0f9-a582-42c1-9eff-52a63415bb98)
-
+![image](https://github.com/user-attachments/assets/9506809e-2730-43a7-8182-9dbd97d90a56)
 
 ## Introduction
 
@@ -80,11 +79,11 @@ For this project we will use random forest algorithm as the classifier. Random f
 
 Another features that also fundamental in random forest is ensemble concept, as random forest done by building multiple decision trees using random samples of the data. First, we select random K data points from the training set. Then, we build the decision trees associated with the selected data points (Subsets). Next, we build N number of decision trees by repeating the first and latter steps. Each tree is trained on a different subset of the data which makes each tree unique and only using several features that chosen randomly.  
 
-![image](https://github.com/user-attachments/assets/128fb944-65dc-431b-88fe-39dcb1eabbb4)
+![image](https://github.com/user-attachments/assets/0fdc8aa1-ecee-4984-8be7-784bb0daa905)
 
 Then after all trees are done, the final outcome will combine all the trees result by majority voting.
 
-![image](https://github.com/user-attachments/assets/e1a2e79a-5aad-4e20-a898-65095d60cce9)
+![image](https://github.com/user-attachments/assets/27fd2d21-b86e-4d20-bf78-b7996514e4d7)
 
 When performing Random Forests based on classification data, we often use the Gini index to decide how nodes on a decision tree branch :
 
