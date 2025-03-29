@@ -37,7 +37,7 @@ In which usually visualized in 3D view,
 
 The dataset divided into 10 plots of 100x50 meter with each tree has been labeled with species and diameter on breast height information.
 
-
+![plot9](https://github.com/user-attachments/assets/75b1e9a4-d58f-470d-9a91-b628eea08cc9)
 
 The study area is situated in Perm Krai, Russia, approximately 90 km east of the regional administrative center, Perm. This region features a dense mixed forest characterized by a complex and irregular canopy structure. LiDAR point cloud already undergo noise cleaning to filter points with extreme values above canopy. After that, ground classification was done to identify points that represent the ground. Finally, the data was normalized by transforming points elevation as height above ground. 
 
