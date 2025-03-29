@@ -168,6 +168,9 @@ Accuracy is the most fundamental metrics for classification model evaluation. It
 4.	Confusion matrix, graphical representation of all positive and negative instance
 5.	Receiver Operating Characteristic (ROC) Curve, graphical representation of a classification model's ability to distinguish between positive and negative classes at various classification thresholds. The curve is plotted from True Positive Rate (recall) as y-axis and False Positive Rate (1-recall) as x-axis. Additionally it also compute Area under Curve (AUC) which is basically evaluate the model’s performance to distinguish positives and negatives.
 
+For further reference, let's recall that positive (1) means the data classified as Coniferous and negative (0) means the data classified as Deciduous. Therefore, true positive means the data correctly predicted as coniferous and true negative means that the data correctly predicted as deciduous. Otherwise, the prediction are false.
+
+
 Furthermore, we divided the data into training set and test set with a ration of 80:20. Then, the training set was used for model fitting, and the training accuracy was evaluated using k-cross validation with k=5. Last, the fitted model were tested against test set to get the final evaluation metrics. For this experiment, we build three scenario model as follows,
 1. Scenario #1: Fitted model with all metrics and default hyperparameters
 2. Scenario #2:Fitted model with selected metrics and default hyperparameters
