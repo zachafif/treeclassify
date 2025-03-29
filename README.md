@@ -1,7 +1,7 @@
 # treeclassify
 Portfolio project on tree species classification using LiDAR and machine learning
 
-![image](https://github.com/user-attachments/assets/2783e5d6-78ea-4691-a5c0-ec46de2c6105)
+![image](https://github.com/user-attachments/assets/1383d0f9-a582-42c1-9eff-52a63415bb98)
 
 
 ## Introduction
@@ -24,7 +24,8 @@ Related works related to this project serve as benchmark for the developed model
 
 ### Dataset
 
-The dataset, provided by Dubrovin et al. (2024), comprises of point cloud data acquired from a LiDAR sensor mounted on an Unmanned Aerial Vehicle (UAV), complemented by field inventory data that serves as the ground truth reference (label) for the LiDAR measurements. Point cloud data is a set of points in a 3D coordinate system with each point contain the following information,
+The dataset, provided by Dubrovin et al. (2024), comprises of point cloud data acquired from a LiDAR sensor mounted on an Unmanned Aerial Vehicle (UAV), complemented by field inventory data that serves as the ground truth reference (label) for the LiDAR measurements. 
+Point cloud data is a set of points in a 3D coordinate system with each point contain the following information,
 
 ![image](https://github.com/user-attachments/assets/6d7a4397-0814-43d7-b360-3d88827cbb29)
 
@@ -33,6 +34,10 @@ _(Source: ASPRS.org)_
 In which usually visualized in 3D view,
 
 ![image](https://github.com/user-attachments/assets/ba04aaff-979a-499c-bfd0-3ea35b6b6bf9)
+
+The dataset divided into 10 plots of 100x50 meter with each tree has been labeled with species and diameter on breast height information.
+
+
 
 The study area is situated in Perm Krai, Russia, approximately 90 km east of the regional administrative center, Perm. This region features a dense mixed forest characterized by a complex and irregular canopy structure. LiDAR point cloud already undergo noise cleaning to filter points with extreme values above canopy. After that, ground classification was done to identify points that represent the ground. Finally, the data was normalized by transforming points elevation as height above ground. 
 
