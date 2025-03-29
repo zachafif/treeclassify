@@ -10,12 +10,13 @@ Forest are a crucial renewable natural resource and an important dynamic part of
 Recent development in the field of forest inventory moved toward the application of remote sensing method such as Light Detection and Ranging (LiDAR) for conducting forest inventory. As LiDAR method works by using pulsed lasers to detect and measure the return from the emitted laser beam that interacted with terrain and object surfaces, it provide range data in the form of three-dimensional point clouds that can penetrate canopy. Thus, it can capture the structure of the forest down to each tree.
 
 ![image](https://github.com/user-attachments/assets/94a1fbdf-b211-4e7b-9874-b9c8935ab5fd)
+(source: UNAVCO)
 
 
 While the acquisition technology can capture detailed data, it need a statistical model in order to generate automatic tree species information. Such modelling can be done using machine learning approaches to correlate tree species with LiDAR data. In this project, we will use random forest algorithm to classify tree species from LiDAR data.
 
 ## Related Works
-Related works related to this project serve as benchmark for the developed model,
+Related works related to this project serve as benchmark for the developed model summarized in this table,
 
 ![image](https://github.com/user-attachments/assets/1db01852-bdd4-4024-ac2e-dc2a38a19450)
 
@@ -103,6 +104,8 @@ Our choice on using random forest is that the algorithm often used to classify L
 To reduce the data dimensionality and to make the model more interpretable, we conduct a variable selection process. We use forward selection approach for our data due to it simplicity and computationally feasible to do with author’s machine. The approach begin with fitting the model using M0 with no input variable,  followed by recursively add all input variable one by one with the cross validation score calculated for each. Next,  the variable with the best score added by one predictor with the same step as before. For this project we chose the best **ten (10)** predictor, this process will yield the top ten predictors with the smallest CV error.
 
 ![image](https://github.com/user-attachments/assets/0a3b41ff-8080-46b4-b5b6-47937f01c363)
+
+(source: Pacmann Academy)
 
 From the process, we select ten features as follows,
 
