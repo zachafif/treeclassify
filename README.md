@@ -1,6 +1,9 @@
 # treeclassify
 Portfolio project on tree species classification using LiDAR and machine learning
 
+![image](https://github.com/user-attachments/assets/2783e5d6-78ea-4691-a5c0-ec46de2c6105)
+
+
 ## Introduction
 
 Forest are a crucial renewable natural resource and an important dynamic part of the global carbon cycle.  Periodically, it need to be monitor thoroughly by conducting forest inventory, a systematic collection of data on the forestry resources. One of the most important data to be acquired is Tree species information. Originally, forest inventory are done by manual cruising and insitu survey. However, this approach are expensive and time consuming.
