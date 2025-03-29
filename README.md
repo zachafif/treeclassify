@@ -5,7 +5,7 @@ Portfolio project on tree species classification using LiDAR and machine learnin
 
 Forest are a crucial renewable natural resource and an important dynamic part of the global carbon cycle.  Periodically, it need to be monitor thoroughly by conducting forest inventory, a systematic collection of data on the forestry resources. One of the most important data to be acquired is Tree species information. Originally, forest inventory are done by manual cruising and insitu survey. However, this approach are expensive and time consuming.
 
-Recent development in the field of forest inventory moved toward the application of remote sensing method such as Light Detection and Ranging (LiDAR) for conducting forest inventory. As LiDAR method works by using pulsed lasers to detect and measure terrain and object surfaces, it provide range data in the form of three-dimensional point clouds that can penetrate canopy. Thus, it can capture the structure of the forest down to each tree.
+Recent development in the field of forest inventory moved toward the application of remote sensing method such as Light Detection and Ranging (LiDAR) for conducting forest inventory. As LiDAR method works by using pulsed lasers to detect and measure the return from the emitted laser beam that interacted with terrain and object surfaces, it provide range data in the form of three-dimensional point clouds that can penetrate canopy. Thus, it can capture the structure of the forest down to each tree.
 
 ![image](https://github.com/user-attachments/assets/94a1fbdf-b211-4e7b-9874-b9c8935ab5fd)
 
@@ -100,14 +100,18 @@ To reduce the data dimensionality and to make the model more interpretable, we c
 From the process, we select ten features as follows,
 
 ```
-'pzabove2', 'CRR', 'zpcum8', 'L1', 'pz_5.10', 'n_first', 'Oligophotic', 'kde_peak1_value', 'imax', 'ipcumzq30'
+'zq15', 'zentropy', 'zpcum8', 'pz_0.0.15', 'pz_5.10', 'rumple', 'kde_peak4_elev', 'kde_peak2_value', 'imean', 'ipcumzq50'
 ```
+
+With the definition of the ten metrics described in this table,
+
+![image](https://github.com/user-attachments/assets/b7dfb383-df77-4cae-98db-6535ede448b1)
 
 The performance of forward selection features in this project can be shown in the following figure,
 
-![image](https://github.com/user-attachments/assets/5a7c2a22-f659-4a2f-95b3-6126457ce9e1)
+![image](https://github.com/user-attachments/assets/89a9ebc6-01f5-4af7-aa85-11f05d21ea47)
 
-The performance shows an improvement as the features being added and become stagnant halfway.
+The performance shows an improvement as the features are added with a significant increase from two to three features. Then the increasing trend slowly rises to 0.69 before it become stagnant near the end (ten features).
 
 ### Hyperparameters
 Hyperparameters experimented for this project are,
@@ -125,11 +129,11 @@ We test a few different models using GridSearchCV with params_grid set as
 
 The result can be seen in below figure,
 
-![image](https://github.com/user-attachments/assets/39665dd6-5a3e-443c-829d-0ff48381a8d0)
+![score per paam](https://github.com/user-attachments/assets/cbbc9897-af5c-4efb-8e08-ebf025c39aef)
 
 and get the best parameter as: 
 ```
-{'max_depth': None, 'min_samples_leaf': 4, 'min_samples_split': 5, 'n_estimators': 100}
+{'max_depth': 10, 'min_samples_leaf': 4, 'min_samples_split': 2, 'n_estimators': 100}
 ```
 
 ### Model Performance
@@ -161,24 +165,62 @@ Furthermore, we divided the data into training set and test set with a ration of
 
 The results for these three scenarios shown in below table,
 
-![image](https://github.com/user-attachments/assets/9045e4dd-48b1-40d4-b94d-303f806b1521)
+![image](https://github.com/user-attachments/assets/a44a0de2-f976-4cc7-b9b3-2ee548c2024d)
+
 From the comparison table, we can conclude that the selected features with the best parameter has improved overall performance metrics.
 
 Next, the best parameter model yield the following confusion matrix,
 
-![image](https://github.com/user-attachments/assets/f187925b-2cf9-4d5a-9353-a504cb199a09)
+![confusion matrix](https://github.com/user-attachments/assets/532e9e53-ef6c-4195-aa95-75f57c585ed2)
 
 The yellow box represent true instances whereas the purple represent false instances. It was shown that the model has true instances twice the false instances, a TPR > TFR which shows a good sign for our model. 
 Lastly, we perform ROC curve analysis and yield the following result,
 
-![image](https://github.com/user-attachments/assets/b7997836-f873-4375-b52c-ac54b537686a)
+![ROC Curves](https://github.com/user-attachments/assets/b603e444-94ee-4294-891c-0b523acb14d5)
 
-The curve has a AUC of 0.71 which was higher than random guess (0.5). This indicate that the model has better prediction than random guess but it still more improvement as it has a relatively small predictive power.
+The curve has a AUC of 0.72 which was higher than random guess (0.5). This indicate that the model has better prediction than random guess but it still more improvement as it has a relatively small predictive power.
+
+### Mapping
+
+The predicted result then mapped back into their respective tree using the tree "ID" column, a unique identifier created by concatenating the plot number and tree number. The mapped result then visualized in a GIS software and overlayed in the aerial photo. A sample result also checked in the point cloud level to check the 3D view of the sample trees.
+
+![tree id 2_324](https://github.com/user-attachments/assets/782ba849-c78d-4072-a738-a430ce5bcf12)![tree id 9_303](https://github.com/user-attachments/assets/f31d3c2d-25d6-4404-9231-68207fce66a6)
+![tree id 6_220](https://github.com/user-attachments/assets/a684d687-e772-4119-8b56-769eb9db10bb)![tree id 3_48](https://github.com/user-attachments/assets/7985cd6a-30ae-4ea5-a7f3-64345685bf6c)
+
+The full prediction result also plotted,
+
+![Map plot 1](https://github.com/user-attachments/assets/605c0eb0-53f1-4e8d-b6a7-b66bf8d9d947)
+![Map plot 9](https://github.com/user-attachments/assets/e6162924-0478-400a-a397-8ec034f1593e)
 
 ### Conclusion and Future Works
-In this project, we aimed to classify tree species from LiDAR point cloud data using machine learning model. The point cloud data used by dataset provided by …  was acquired using LiDAR sensor mounted in a UAV and accompanied with a field inventory data as label reference. The study area was located in Perm, Russia.The output of the project was a binary classification prediction of the tree species, whether it was deciduous or coniferous.  The selected model algorithm for this project was random forest model. Furthermore, we had  experimented on the model feature selection and hyperparameter by using three different scenarios as following, default parameter-all features, default parameter-selected features, best parameters-selected features.
+In this project, we aimed to classify tree species from LiDAR point cloud data using machine learning model. The point cloud data used by dataset provided by Dubrovin et al. (2024) was acquired using LiDAR sensor mounted in a UAV and accompanied with a field inventory data as label reference. The study area was located in Perm, Russia.The output of the project was a binary classification prediction of the tree species, whether it was deciduous or coniferous.  The selected model algorithm for this project was random forest model. Furthermore, we had  experimented on the model feature selection and hyperparameter by using three different scenarios as following, default parameter-all features, default parameter-selected features, best parameters-selected features.
 
-The experiment resulted in only slight differences between scenarios with the accuracy of 0.70-0.72 in the test dataset and F1 score of 0.70-0.71. These results shows that the model still need improvement as it has a relatively small predictive power. Moreover, future research can focus more on improving LiDAR feature extraction technique, better feature selection method, and exploring other model algorithms.
+The experiment resulted in only slight differences between scenarios with the accuracy of 0.71-0.74 in the test dataset and F1 score of 0.71-0.74. These results shows that the model still need improvement as it has a relatively small predictive power. Moreover, future research can focus more on improving LiDAR feature extraction technique, better feature selection method, and exploring other model algorithms.
+
+### Reference
+
+Airlangga, G. (2024). Comparative Analysis of Machine Learning Models for Tree Species Classification from UAV LiDAR Data. Buletin Ilmiah Sarjana Teknik Elektro, 6(1), 54–62. https://doi.org/10.12928/biste.v6i1.10059
+
+Dalponte, M., Bruzzone, L., & Gianelle, D. (2012). Tree species classification in the Southern Alps based on the fusion of very high geometrical resolution multispectral/hyperspectral images and LiDAR data. Remote sensing of environment, 123, 258-270.
+
+Dubrovin, I., Fortin, C. & Kedrov, A. An open dataset for individual tree detection in UAV LiDAR point clouds and RGB orthophotos in dense mixed forests. Sci Rep 14, 21938 (2024). https://doi.org/10.1038/s41598-024-72669-5
+
+Jean-Romain Roussel and David Auty (2023). Airborne LiDAR Data Manipulation and Visualization for Forestry Applications. R package version 3.1.0. https://cran.r-project.org/package=lidR
+
+Li, Jili & Hu, Baoxin & Sohn, Gunho & Jing, Linhai. (2010). Individual tree species classification using structure features from high density airborne lidar data. 2099 - 2102. 10.1109/IGARSS.2010.5651629. 
+
+Kim, S., Hinckley, T., & Briggs, D. (2011). Classifying individual tree genera using stepwise cluster analysis based on height and intensity metrics derived from airborne laser scanner data. Remote sensing of environment, 115(12), 3329-3342.
+
+Kim, S., McGaughey, R. J., Andersen, H. E., & Schreuder, G. (2009). Tree species differentiation using intensity data derived from leaf-on and leaf-off airborne laser scanner data. Remote Sensing of Environment, 113(8), 1575-1586.
+
+Marrs, J., & Ni-Meister, W. (2019). Machine Learning Techniques for Tree Species Classification Using Co-Registered LiDAR and Hyperspectral Data. Remote Sensing, 11(7), 819.
+
+Roussel, J.R., Auty, D., Coops, N. C., Tompalski, P., Goodbody, T. R. H., Sánchez Meador, A., Bourdon, J.F., De Boissieu, F., Achim, A. (2021). lidR : An R package for analysis of Airborne Laser Scanning (ALS) data. Remote Sensing of Environment, 251 (August), 112061. <doi:10.1016/j.rse.2020.112061>.
+
+Tarsha-Kurdi, Fayez & Amakhchan, Wijdan & Gharineiat, Zahra. (2021). Random Forest Machine Learning Technique for Automatic Vegetation Detection and Modelling in LiDAR Data. Journal of Environmental Science and Natural Resources. 28. 10.19080/IJESNR.2021.28.556234. 
+
+Qian, C., Yao, C., Ma, H., Xu, J., & Wang, J. (2023). Tree Species Classification Using Airborne LiDAR Data Based on Individual Tree Segmentation and Shape Fitting. Remote Sensing, 15(2), 406.
+
 
 
 
