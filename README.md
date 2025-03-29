@@ -205,7 +205,11 @@ The full prediction result also plotted,
 ### Conclusion and Future Works
 In this project, we aimed to classify tree species from LiDAR point cloud data using machine learning model. The point cloud data used by dataset provided by Dubrovin et al. (2024) was acquired using LiDAR sensor mounted in a UAV and accompanied with a field inventory data as label reference. The study area was located in Perm, Russia.The output of the project was a binary classification prediction of the tree species, whether it was deciduous or coniferous.  The selected model algorithm for this project was random forest model. Furthermore, we had  experimented on the model feature selection and hyperparameter by using three different scenarios as following, default parameter-all features, default parameter-selected features, best parameters-selected features.
 
-The experiment resulted in only slight differences between scenarios with the accuracy of 0.71-0.74 in the test dataset and F1 score of 0.71-0.74. These results shows that the model still need improvement as it has a relatively small predictive power. Moreover, future research can focus more on improving LiDAR feature extraction technique, better feature selection method, and exploring other model algorithms.
+The experiment resulted in only slight differences between scenarios with the accuracy of 0.71-0.74 in the test dataset and F1 score of 0.71-0.74. These results shows that the model still need improvement as it has a relatively small predictive power. Moreover, future research can improve the following area,
+
+1. Improving LiDAR feature extraction technique. It better to do tree segmentation first before extracting the feature to have a better match between the tree (point cloud) and inventory data.
+2. Better feature selection method. Try backward selection, lass reguralization, and/or random forest feature importance
+3. Exploring other model algorithms. Other experiment sucessfully developed the classification model using other algorithm such as SVM and deep learning.
 
 ### Reference
 
