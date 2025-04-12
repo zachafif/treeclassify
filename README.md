@@ -1,4 +1,4 @@
-# treeclassify
+# Classifying Tree Species with LiDAR & Machine Learning
 Portfolio project on tree species classification using LiDAR and machine learning
 
 ![image](https://github.com/user-attachments/assets/9506809e-2730-43a7-8182-9dbd97d90a56)
